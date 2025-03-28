@@ -5,8 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupUserRoutes(r *gin.Engine, CreatePersonController *controllers.CreatePersonController) {
+func SetupUserRoutes(r *gin.Engine, CreatePersonController *controllers.CreatePersonController, GetPersonController *controllers.getPersonController) {
 
 	r.POST("/addPerson", CreatePersonController.Handle)
+	r.POST("/newPersonIsAdded", GetPersonController.ShortPoll)
 
 }
