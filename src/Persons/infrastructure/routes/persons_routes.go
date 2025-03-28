@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/infrastructure/controllers"
+	"github.com/alejandroimen/LongYShortPolling.git.git/src/Persons/infrastructure/controllers"
 	"github.com/gin-gonic/gin"
 )
 

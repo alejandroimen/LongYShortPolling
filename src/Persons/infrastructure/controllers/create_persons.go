@@ -3,7 +3,7 @@ package controllers
 import (
 	"log"
 
-	"github.com/alejandroimen/LongYShortPolling/src/Persons/application"
+	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/application"
 	"github.com/gin-gonic/gin"
 )
 

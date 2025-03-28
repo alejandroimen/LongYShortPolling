@@ -3,8 +3,8 @@ package application
 import (
 	"fmt"
 
-	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/domain/repository"
-	"github.com/alejandroimen/LongYShortPolling/src/Persons/domain/entities"
+	"github.com/alejandroimen/LongYShortPolling.git.git/src/Persons/domain/repository"
+	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/domain/entities"
 )
 
 type CreatePerson struct {
