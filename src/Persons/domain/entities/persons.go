@@ -4,5 +4,5 @@ type Person struct {
 	ID     int
 	Name   string
 	Age    int
-	gender string
+	Gender string
 }

@@ -3,15 +3,16 @@ package controllers
 import (
 	"log"
 	"net/http"
+	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/application"
 
 	"github.com/gin-gonic/gin"
 )
 
 type GetPersonController struct {
-	getPerson *application.getPerson
+	getPerson *application.GetPersons
 }
 
-func NewpersonsController(getPerson *application.getPerson) *GetPersonController {
+func NewpersonsController(getPerson *application.GetPersons) *GetPersonController {
 	return &GetPersonController{getPerson: getPerson}
 }
 

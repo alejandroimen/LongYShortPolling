@@ -15,32 +15,33 @@ func NewCreatePersonRepoMySQL(db *sql.DB) *PersonRepoMySQL {
 	return &PersonRepoMySQL{db: db}
 }
 
-func (r *PersonRepoMySQL) Save(Person entities.User) error {
-	query := "INSERT INTO persons (name, email, password) VALUES (?, ?, ?)"
-	_, err := r.db.Exec(query, Person.Name, Person, Person.Password)
+func (r *PersonRepoMySQL) Save(Person entities.Person) error {
+	query := "INSERT INTO persons (name, age, gender) VALUES (?, ?, ?)"
+	_, err := r.db.Exec(query, Person.Name, Person.Age, Person.Gender)
 	if err != nil {
-		return fmt.Errorf("error insertando User: %w", err)
+		return fmt.Errorf("error insertando Person: %w", err)
 	}
 	return nil
 }
 
-func (r *PersonRepoMySQL) FindAll() ([]entities.Person, error) {
-	query := "SELECT * FROM persons"
-	rows, err := r.db.Query(query)
+func (r *PersonRepoMySQL) GetRecentPersons(lastID int) ([]entities.Person, error) {
+	rows, err := r.db.Query("SELECT id, nombre, edad, genero FROM personas WHERE id > ?", lastID)
 	if err != nil {
-		return nil, fmt.Errorf("error buscando los persons: %w", err)
+		return nil, err
 	}
 	defer rows.Close()
 
-	var Persons []entities.Person
+	var personas []entities.Person
 	for rows.Next() {
-		var Person entities.Person
-		if err := rows.Scan(&Person.ID, &Person.Name, &Person, &Person.Password); err != nil {
+		var p entities.Person
+		var id int 
+		err := rows.Scan(&id, &p.Name, &p.Age, &p.Gender)
+		if err != nil {
 			return nil, err
 		}
-		Person = append(Person, Person)
+		personas = append(personas, p)
 	}
-	return Persons, nil
+	return personas, nil
 }
 
 func (r *PersonRepoMySQL) countGender() ([]int, error) {

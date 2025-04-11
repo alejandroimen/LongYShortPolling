@@ -1,13 +1,13 @@
 package routes
 
 import (
-	"github.com/alejandroimen/LongYShortPolling.git.git/src/Persons/infrastructure/controllers"
+	"github.com/alejandroimen/LongYShortPolling.git/src/Persons/infrastructure/controllers"
 	"github.com/gin-gonic/gin"
 )
 
-func SetupUserRoutes(r *gin.Engine, CreatePersonController *controllers.CreatePersonController, GetPersonController *controllers.getPersonController) {
+func SetupUserRoutes(r *gin.Engine, CreatePersonController *controllers.CreatePersonController, GetPersonController *controllers.GetPersonController, CountGender *controllers.CountGenderController) {
 
 	r.POST("/addPerson", CreatePersonController.Handle)
-	r.POST("/newPersonIsAdded", GetPersonController.ShortPoll)
-
+	r.GET("/newPersonIsAdded", GetPersonController.ShortPoll)
+	r.GET("/countGender", CountGender.LongPoll)
 }

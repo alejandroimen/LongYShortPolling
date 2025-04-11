@@ -20,7 +20,7 @@ func (c *CreatePersonController) Handle(ctx *gin.Context) {
 
 	var request struct {
 		Name   string `json:"name"`
-		Age    string `json:"age"`
+		Age    int `json:"age"`
 		Gender string `json:"gender"`
 	}
 
@@ -31,7 +31,7 @@ func (c *CreatePersonController) Handle(ctx *gin.Context) {
 	}
 	log.Printf("Creando usuario: Name=%s, Age=%s, Genero=%s", request.Name, request.Age, request.Gender)
 
-	if err := c.CreatePerson.Run(request.Age, request.Name, request.Gender); err != nil {
+	if err := c.CreatePerson.Run(request.Name, request.Age, request.Gender); err != nil {
 		log.Printf("Error creando el usuario: %v", err)
 		ctx.JSON(500, gin.H{"error": err.Error()})
 		return
